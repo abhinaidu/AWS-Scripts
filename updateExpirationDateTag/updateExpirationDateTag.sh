@@ -18,7 +18,7 @@ current_time=$(date +%s) #converting the current date to UNIX epoch format
 for region in ${aws_regions[@]}
 do
 	#Get the Instance id
-	instance_ids=($(aws ec2 describe-instances --filter "Name=tag-value,Values=$OWNER_NAME" --region $region --profile $PROFILE | jq -r '.Reservations[] .Instances[] .InstanceId'))
+	instance_ids=($(aws ec2 describe-instances --filter "Name=tag-value,Values=$OWNER_NAME" --region "$region" --profile $PROFILE | jq -r '.Reservations[] .Instances[] .InstanceId'))
 	for instance_id in ${instance_ids[@]}
 	do
 		#Get the expiration date for the instance in UNIX epoch format
